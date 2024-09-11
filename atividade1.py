@@ -13,8 +13,10 @@ class Lead(db.Model):
         self.db.session.commit()
         def __init__(self, name, email, telefone ):
             self.name = name
-            self.email = email
-            self.telefone = telefone
+        self.email = email
+        self.telefone = telefone
+     
+
     # Função para retornar os dados como dicionário
         def as_dict(self):
             return {
