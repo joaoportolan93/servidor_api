@@ -29,7 +29,11 @@ class LeadAPIHandler:
         self.lead_service.create_lead(
             name=data['name'],
             email=data['email'],
-            telefone=['telefone']
+            telefone=data['telefone'],
+            latitude=data['latitude'],
+            longitude=data['longitude'],
+            interest=data['interest'],
+            temperature=data['temperature']
         )
         return jsonify({"message": "Lead criado com sucesso!"}), 201
 
@@ -40,7 +44,11 @@ class LeadAPIHandler:
             lead_id=id,
             name=data['name'],
             email=data['email'],
-            telefone=['telefone']
+            telefone=data['telefone'],
+            latitude=data['latitude'],
+            longitude=data['longitude'],
+            interest=data['interest'],
+            temperature=data['temperature']
         )
         return jsonify({"message": "Lead atualizado com sucesso!"})
 

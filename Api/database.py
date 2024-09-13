@@ -1,16 +1,18 @@
 from flask_sqlalchemy import SQLAlchemy
 
-class DatabaseConnection:
-    def __init__(self, app):
-        self.app = app
-        self.db = SQLAlchemy(app)
+db = SQLAlchemy()
 
-    def initialize_db(self):
-        with self.app.app_context():
-            self.db.create_all()
+class DatabaseConnection:
+    def __init__(self, app=None):
+        if app is not None:
+            self.init_app(app)
+
+    def init_app(self, app):
+        db.init_app(app)  # Associa o SQLAlchemy ao app Flask
 
     def get_db(self):
-        return self.db
+        return db
 
-    def close_db(self):
-        self.db.session.close()
+    def initialize_db(self, app):
+        with app.app_context():
+            db.create_all()  # Cria as tabelas do banco de dados, se não existirem
